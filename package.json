@@ -1,6 +1,6 @@
 {
     "name": "json-sanitizer",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "src/main.ts",
     "scripts": {
         "test": "nyc mocha",
@@ -11,7 +11,11 @@
         "build": "webpack && cp -r assets/* dist && tsc"
     },
     "author": "David Thorn <david.thorn221278@googlemail.com>",
-    "license": "ISC",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/davidthorn/node.git"
+    },
     "devDependencies": {
         "@types/chai": "^4.1.7",
         "@types/fs-extra": "^5.0.4",
