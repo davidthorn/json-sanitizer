@@ -85,14 +85,9 @@ class Sanitizer {
      * @memberof Sanitizer
      */
     removeLinesWithOnlyWhitespace(content) {
-        return content.split('\n').map(line => { return line.trim(); }).filter(i => i.length > 0).join('\n');
-        // let newContent: string[] = []
-        // parts.forEach(line => {
-        //     if(line.trim().length > 0) {
-        //         newContent.push(line.trim())
-        //     } 
-        // })
-        // return newContent.join('\n')
+        return content.split('\n')
+            .map(line => { return line.trim(); })
+            .filter(i => i.length > 0).join('\n');
     }
     /**
      * Removes all comments which start with a hash sign

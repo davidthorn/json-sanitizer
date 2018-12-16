@@ -1,6 +1,6 @@
 {
     "name": "djt-json-sanitizer",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "main": "src/index.ts",
     "scripts": {
         "test": "nyc mocha",
@@ -21,7 +21,6 @@
         "@types/fs-extra": "^5.0.4",
         "@types/mocha": "^5.2.5",
         "@types/node": "^10.12.15",
-        "@types/strip-json-comments": "0.0.30",
         "chai": "^4.2.0",
         "fs-extra": "^7.0.1",
         "mocha": "^5.2.0",
@@ -29,7 +28,6 @@
         "nyc": "^13.1.0",
         "path": "^0.12.7",
         "source-map-support": "^0.5.9",
-        "strip-json-comments": "^2.0.1",
         "ts-node": "^7.0.1",
         "typescript": "^3.2.2"
     },
