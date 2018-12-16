@@ -41,6 +41,8 @@ class Sanitizer {
      * @memberof Sanitizer
      */
     parse(callback) {
+        if (this.sanitiseString === undefined)
+            throw new Error('sanitiseString needs to be set in the constructor to use this method');
         this.sanitiseString = callback(this.sanitiseString);
         return this;
     }
@@ -83,14 +85,14 @@ class Sanitizer {
      * @memberof Sanitizer
      */
     removeLinesWithOnlyWhitespace(content) {
-        const parts = content.split('\n');
-        let newContent = [];
-        parts.forEach(line => {
-            if (line.trim().length > 0) {
-                newContent.push(line.trim());
-            }
-        });
-        return newContent.join('\n');
+        return content.split('\n').map(line => { return line.trim(); }).filter(i => i.length > 0).join('\n');
+        // let newContent: string[] = []
+        // parts.forEach(line => {
+        //     if(line.trim().length > 0) {
+        //         newContent.push(line.trim())
+        //     } 
+        // })
+        // return newContent.join('\n')
     }
     /**
      * Removes all comments which start with a hash sign

@@ -9,7 +9,7 @@ class SanitizerUnitTest extends Sanitizer {
 
     @test "that the run method removed all comments using // and ending with \r\n"() {
       
-        let data = fs.readFileSync(path.join(process.cwd() , 'test' , 'test.json'), {
+        let data = fs.readFileSync(path.join(process.cwd() , 'test' , 'resources' , 'test.json'), {
             encoding: 'utf8'
         })
         let json = this.run(data)
@@ -46,11 +46,11 @@ class SanitizerUnitTest extends Sanitizer {
     }
 
     @test "should remove multiline comments from a php file" () {
-        let data = fs.readFileSync(path.join(process.cwd() , 'test' , 'multiline-comments.php'), {
+        let data = fs.readFileSync(path.join(process.cwd() , 'test' , 'resources', 'multiline-comments.php'), {
             encoding: 'utf8'
         })
 
-        let shouldBe = fs.readFileSync(path.join(process.cwd() , 'test' , 'comments.php'), {
+        let shouldBe = fs.readFileSync(path.join(process.cwd() , 'test' , 'resources' , 'comments.php'), {
             encoding: 'utf8'
         })
 
@@ -83,14 +83,24 @@ class SanitizerUnitTest extends Sanitizer {
     }
 
     @test "santizing json file with comments" () {
-        let data = fs.readFileSync(path.join(process.cwd() , 'test' , 'test.json'), {
+        let data = fs.readFileSync(path.join(process.cwd() , 'test' , 'resources', 'test.json'), {
             encoding: 'utf8'
         })
 
-        let shouldBe = fs.readFileSync(path.join(process.cwd() , 'test' , 'sanitized-test.json'), {
+        let shouldBe = fs.readFileSync(path.join(process.cwd() , 'test' , 'resources' , 'sanitized-test.json'), {
             encoding: 'utf8'
         })
         let sanitizedData = this.jsonFile(data)
         expect(sanitizedData).to.be.equal(this.removeLinesWithOnlyWhitespace(shouldBe))
+    }
+
+    @test "Test that an error is thrown when sanitizer string is undefined"() {
+        this.sanitiseString = undefined
+        expect(() => { this.parse((i) => { return i })}, 'Parse should throw because sanitise string is undefined').to.throw()
+    }
+
+    @test "Test that an error is not thrown when sanitizer string is defined"() {
+        this.sanitiseString = "a string"
+        expect(() => { this.parse((i) => { return i })}, 'Parse should throw because sanitise string is undefined').to.not.throw()
     }
 }

@@ -13,7 +13,7 @@ const fs = require("fs");
 const path = require("path");
 let SanitizerUnitTest = class SanitizerUnitTest extends src_1.Sanitizer {
     "that the run method removed all comments using // and ending with \r\n"() {
-        let data = fs.readFileSync(path.join(process.cwd(), 'test', 'test.json'), {
+        let data = fs.readFileSync(path.join(process.cwd(), 'test', 'resources', 'test.json'), {
             encoding: 'utf8'
         });
         let json = this.run(data);
@@ -44,10 +44,10 @@ let SanitizerUnitTest = class SanitizerUnitTest extends src_1.Sanitizer {
         chai_1.expect(sanitizedData).to.be.equal(shouldBe);
     }
     "should remove multiline comments from a php file"() {
-        let data = fs.readFileSync(path.join(process.cwd(), 'test', 'multiline-comments.php'), {
+        let data = fs.readFileSync(path.join(process.cwd(), 'test', 'resources', 'multiline-comments.php'), {
             encoding: 'utf8'
         });
-        let shouldBe = fs.readFileSync(path.join(process.cwd(), 'test', 'comments.php'), {
+        let shouldBe = fs.readFileSync(path.join(process.cwd(), 'test', 'resources', 'comments.php'), {
             encoding: 'utf8'
         });
         let sanitizedData = this.removeMultilineComments(data);
@@ -74,14 +74,22 @@ let SanitizerUnitTest = class SanitizerUnitTest extends src_1.Sanitizer {
         chai_1.expect(sanitizedData).to.be.equal(shouldBe);
     }
     "santizing json file with comments"() {
-        let data = fs.readFileSync(path.join(process.cwd(), 'test', 'test.json'), {
+        let data = fs.readFileSync(path.join(process.cwd(), 'test', 'resources', 'test.json'), {
             encoding: 'utf8'
         });
-        let shouldBe = fs.readFileSync(path.join(process.cwd(), 'test', 'sanitized-test.json'), {
+        let shouldBe = fs.readFileSync(path.join(process.cwd(), 'test', 'resources', 'sanitized-test.json'), {
             encoding: 'utf8'
         });
         let sanitizedData = this.jsonFile(data);
         chai_1.expect(sanitizedData).to.be.equal(this.removeLinesWithOnlyWhitespace(shouldBe));
+    }
+    "Test that an error is thrown when sanitizer string is undefined"() {
+        this.sanitiseString = undefined;
+        chai_1.expect(() => { this.parse((i) => { return i; }); }, 'Parse should throw because sanitise string is undefined').to.throw();
+    }
+    "Test that an error is not thrown when sanitizer string is defined"() {
+        this.sanitiseString = "a string";
+        chai_1.expect(() => { this.parse((i) => { return i; }); }, 'Parse should throw because sanitise string is undefined').to.not.throw();
     }
 };
 __decorate([
@@ -114,6 +122,12 @@ __decorate([
 __decorate([
     test
 ], SanitizerUnitTest.prototype, "santizing json file with comments", null);
+__decorate([
+    test
+], SanitizerUnitTest.prototype, "Test that an error is thrown when sanitizer string is undefined", null);
+__decorate([
+    test
+], SanitizerUnitTest.prototype, "Test that an error is not thrown when sanitizer string is defined", null);
 SanitizerUnitTest = __decorate([
     suite('Sanitizer Test')
 ], SanitizerUnitTest);

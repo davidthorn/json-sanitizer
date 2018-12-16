@@ -52,6 +52,7 @@ export class Sanitizer {
      * @memberof Sanitizer
      */
     parse(callback: (content: string) => string): Sanitizer {
+        if(this.sanitiseString === undefined) throw new Error('sanitiseString needs to be set in the constructor to use this method')
         this.sanitiseString = callback(this.sanitiseString)
         return this
     }
@@ -98,15 +99,16 @@ export class Sanitizer {
      * @memberof Sanitizer
      */
     removeLinesWithOnlyWhitespace(content: string): string {
-        const parts = content.split('\n')
-        let newContent = []
-        parts.forEach(line => {
-            if(line.trim().length > 0) {
-                newContent.push(line.trim())
-            } 
-        })
+        return content.split('\n').map(line => { return line.trim() }).filter(i => i.length > 0).join('\n')
+       
+        // let newContent: string[] = []
+        // parts.forEach(line => {
+        //     if(line.trim().length > 0) {
+        //         newContent.push(line.trim())
+        //     } 
+        // })
         
-        return newContent.join('\n')
+        // return newContent.join('\n')
     }
 
     /**

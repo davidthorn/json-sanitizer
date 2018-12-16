@@ -3,11 +3,15 @@
         "target": "es6",
         "module": "commonjs",
         "sourceMap": true,
+        "strict" : true,
         "experimentalDecorators": true,
         "lib": [
             "es6",
             "dom"
         ],
         "resolveJsonModule": true
-    }
+    },
+    "exclude" : [
+        "test/resources/*"
+    ]
 }
