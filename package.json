@@ -1,6 +1,10 @@
 {
     "name": "djt-json-sanitizer",
+<<<<<<< HEAD
     "version": "1.0.3",
+=======
+    "version": "1.0.2",
+>>>>>>> 6671972054c92d0b7fde9fcb6c97d514006fa009
     "main": "src/index.js",
     "scripts": {
         "test": "nyc mocha",
