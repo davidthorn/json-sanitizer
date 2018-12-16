@@ -1,7 +1,7 @@
 {
     "name": "djt-json-sanitizer",
-    "version": "1.0.2",
-    "main": "src/main.ts",
+    "version": "1.0.3",
+    "main": "src/index.js",
     "scripts": {
         "test": "nyc mocha",
         "pretest": "tsc",
@@ -14,7 +14,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/davidthorn/node.git"
+        "url": "git+https://github.com/davidthorn/json-sanitizer.git"
     },
     "devDependencies": {
         "@types/chai": "^4.1.7",
