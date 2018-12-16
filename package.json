@@ -1,7 +1,7 @@
 {
     "name": "djt-json-sanitizer",
-    "version": "1.0.5",
-    "main": "src/index.ts",
+    "version": "1.0.6",
+    "main": "src/index.js",
     "scripts": {
         "test": "nyc mocha",
         "pretest": "tsc",
